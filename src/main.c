@@ -6,50 +6,54 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/02/11 10:09:24 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/02/11 14:52:21 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int			ft_check_input(int argc, char **argv);
+int			ft_check_input(char **argv);
 static int	ft_check_num(char *str);
 
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
 		return (1);
-	if (ft_check_input(argc, argv))
+	if (ft_check_input(argv))
 		return (ft_printf("%s\n", "Error"), 1);
 	return (0);
 }
 
-// split / check num / atoi / check dups ll /
-int	ft_check_input(int argc, char **argv)
+// split / check num / check max int / check dups ll /
+int	ft_check_input(char **argv)
 {
 	int		i;
-	long	n;
 	char	**split;
+	t_list	**head;
+	t_list	*node;
 
 	i = 0;
-	n = 0;
 	split = NULL;
-	while (++i < argc)
+	head = NULL;
+	node = NULL;
+	while (argv[++i])
 	{
 		split = ft_split(argv[i], ' ');
 		while (*split != NULL)
 		{
 			if (ft_check_num(*split))
 				return (1);
+			if (ft_atol(*split) < INT32_MIN || ft_atol(*split) > INT32_MAX)
+				return (1);
+			node = ft_lstnew((void *)ft_atol(*split));
+			ft_lstadd_back(head, node);
+			ft_printf("%i\n", node->content);
+			// ft_printf("%s\n", *split++);
+			// ft_printf("%s\n", n);
+			split++;
+
 			// break ;
-			ft_printf("%s\n", *split++);
-			// n = ft_atoi_long(*split);
-			// ft_printf("%i", n);
 		}
-		n = ft_atoi_long(*split);
-		ft_printf("%i", n);
-		// if ((int)ints < INT32_MIN || (int)ints > INT32_MAX)
-		// 	return (1);
 	}
 	return (0);
 }
@@ -72,7 +76,7 @@ static int	ft_check_num(char *str)
 			nums++;
 		i++;
 	}
-	if ((nums == 0 && sign != 0) || (nums != 0 && sign > 1))
+	if ((nums == 0 || (nums != 0 && sign > 1)))
 		return (1);
 	return (0);
 }
