@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_compact.c                               :+:      :+:    :+:   */
+/*   ft_atoi_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 13:36:45 by cmeng             #+#    #+#             */
-/*   Updated: 2023/02/07 18:06:52 by cmeng            ###   ########.fr       */
+/*   Created: 2023/02/11 08:44:47 by cmeng             #+#    #+#             */
+/*   Updated: 2023/02/11 10:20:32 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// edited: '\n' overwritten with src[ft_strlen(src) - 1] = 0
-
-int	ft_strjoin_compact(char **dst, char *src)
+long	ft_atol(const char *str)
 {
-	char	*new;
-	int		len;
+	int		i;
+	long	output;
+	int		sign;
 
-	len = ft_strlen(src);
-	if (src[len - 1] == '\n')
-		src[len - 1] = 0;
-	new = ft_strjoin(*dst, src);
-	free(*dst);
-	free(src);
-	*dst = new;
-	return (new == NULL);
+	i = 0;
+	output = 0;
+	sign = 1;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\n' || str[i] == '\r')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		output = output * 10 + str[i] - '0';
+		i++;
+	}
+	return (output * sign);
 }

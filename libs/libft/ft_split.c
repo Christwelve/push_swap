@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:53:47 by cmeng             #+#    #+#             */
-/*   Updated: 2023/02/10 11:26:37 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/07 16:21:08 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,15 @@ char	**ft_split(char const *s, char c)
 
 // int	main(void)
 // {
-// 	char	str[] = "12 2 2 2 8 ";
-// 	char	c = ' ';
+// 	char	str[] = "1234567890";
+// 	char	c = 'm';
 // 	char	**out = ft_split(str, c);
 
 // 	while (*out != NULL)
-// 		printf("%s\n", *out++);
+// 		printf("%s_", *out++);
+// 	printf("\n");
 // 	// printf("%s\n", cpy_word(&str, c));
-// 	// printf("%d\n", count_words(str, c));
+// 	printf("%d\n", count_words(str, c));
 // 	// printf("%d\n", count_letters(str, c));
 // 	return (0);
 // }
