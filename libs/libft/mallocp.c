@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   mallocp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/02/11 19:30:50 by cmeng            ###   ########.fr       */
+/*   Created: 2023/02/12 11:42:05 by cmeng             #+#    #+#             */
+/*   Updated: 2023/02/12 16:23:58 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "../libs/libs.h"
-
-typedef struct s_data
+int	mallocp(size_t count, void **ptr)
 {
-
-}	t_data;
-
-typedef struct s_vector
-{
-	int		*items;
-	size_t	size;
-	size_t	max_size;
-
-}	t_vector;
-
-#endif
+	*ptr = malloc(count);
+	if (*ptr == NULL)
+		return (1);
+	return (0);
+}

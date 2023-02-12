@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 08:35:32 by cmeng             #+#    #+#             */
-/*   Updated: 2023/02/11 10:21:14 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/02/12 16:24:42 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
 void	*ft_calloc(size_t count, size_t size);
+int		ft_mallocp(size_t count, void **ptr);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
