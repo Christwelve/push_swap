@@ -6,14 +6,14 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/12 20:42:33 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/13 14:52:16 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 int			ft_check_input(char **argv);
-static int	dynamic_arr(char **res, char c);
+static int	dynamic_arr(int **res, int n);
 static int	ft_check_num(char *str);
 
 int	main(int argc, char **argv)
@@ -25,57 +25,84 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-// dynamic arr
+// dynamic arr approach
 int	ft_check_input(char **argv)
 {
 	int		i;
+	long	n;
 	char	**split;
-	t_list	**lst;
-	t_list	*node;
+	int		*stack_a;
 
 	i = 0;
 	split = NULL;
-	lst = NULL;
-	node = NULL;
+	if (ft_calloc2(1, sizeof(int), (void **) &stack_a))
+		return (1);
 	while (argv[++i])
 	{
 		split = ft_split(argv[i], ' ');
 		while (*split != NULL)
 		{
+			n = ft_atol(*split);
 			if (ft_check_num(*split))
 				return (1);
-			if (ft_atol(*split) < INT32_MIN || ft_atol(*split) > INT32_MAX)
+			if (n < INT32_MIN || n > INT32_MAX)
 				return (1);
-
+			if (dynamic_arr(&stack_a, n))
+				return (1);
+			split++;
 		}
 	}
+	// int j = 0;
+	// ft_printf("%s	|\n", "stack_a");
+	// ft_printf("%s\n", "--------|");
+	// while(stack_a[j])
+	// {
+	// 	ft_printf("%i	|\n", stack_a[j]);
+	// 	j++;
+	// }
 	return (0);
 }
 
-static int	dynamic_arr(char **res, char c)
+static int	dynamic_arr(int **res, int n)
 {
-	char		*tmp;
+	int			*tmp;
 	static int	i = 0;
 	static int	size = 1;
 
 	if (i == size)
 	{
-		if (ft_calloc2(size * 2, sizeof(char), (void **) &tmp))
+		if (ft_calloc2(size * 2, sizeof(int), (void **) &tmp))
 			return (1);
-		ft_memcpy(tmp, *res, size);
+		ft_memcpy(tmp, *res, size * sizeof(int));
 		free(*res);
 		*res = tmp;
 		size = size * 2;
 	}
-	(*res)[i++] = c;
-	if (c == '\0')
+	(*res)[i++] = n;
+	return (0);
+}
+
+// valid (0): number with max one sign (+/-)
+static int	ft_check_num(char *str)
+{
+	int	i;
+	int	has_sign;
+
+	i = 0;
+	has_sign = 0;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		write(1, *res, i);
-		free(*res);
-		*res = NULL;
-		i = 0;
-		size = 1;
+		has_sign = 1;
+		i++;
 	}
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (1);
+		i++;
+	}
+	if (has_sign && i == 1)
+		return (1);
 	return (0);
 }
 
@@ -110,30 +137,6 @@ static int	dynamic_arr(char **res, char c)
 // 	}
 // 	return (0);
 // }
-
-// valid (0): number with max one sign (+/-)
-static int	ft_check_num(char *str)
-{
-	int	i;
-	int	has_sign;
-
-	i = 0;
-	has_sign = 0;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		has_sign = 1;
-		i++;
-	}
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (1);
-		i++;
-	}
-	if (has_sign && i == 1)
-		return (1);
-	return (0);
-}
 
 
 // int	ft_check_duplicates(t_list *node)

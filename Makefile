@@ -1,6 +1,6 @@
 
 NAME		= 	push_swap
-CFLAGS		= 	-Wall -Werror -Wextra 
+FLAGS		= 	-Wall -Werror -Wextra
 CC			= 	cc
 RM			=	rm -rf
 INCLUDE 	= 	-I include
@@ -21,11 +21,11 @@ WHITE		=	\033[0m
 all: $(NAME)
 
 $(NAME): $(LIBS) $(MAN_OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(MAN_OBJ) $(LIBS) $(INCLUDE)
+	$(CC) $(FLAGS) -o $(NAME) $(MAN_OBJ) $(LIBS) $(INCLUDE)
 	@echo "$(GREEN)*** push_swap compiled!***$(WHITE)"
 
 %.o: %.c $(INCLUDE)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(LIBS):
 	@if [ ! -d "./libs" ]; then git clone https://github.com/Christwelve/libs.git; fi
