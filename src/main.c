@@ -6,22 +6,73 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/13 14:52:16 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/14 19:07:57 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int			ft_check_input(char **argv);
-static int	dynamic_arr(int **res, int n);
-static int	ft_check_num(char *str);
-
-int	main(int argc, char **argv)
+int	ft_check_dup(int *stack)
 {
-	if (argc < 2)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (stack[i])
+	{
+		j = i + 1;
+		while (stack[j])
+		{
+			if (stack[i] == stack[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+// valid (0): number with max one sign (+/-)
+static int	ft_check_num(char *str)
+{
+	int	i;
+	int	has_sign;
+
+	i = 0;
+	has_sign = 0;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		has_sign = 1;
+		i++;
+	}
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (1);
+		i++;
+	}
+	if (has_sign && i == 1)
 		return (1);
-	if (ft_check_input(argv))
-		return (ft_printf("%s\n", "Error"), 1);
+	return (0);
+}
+
+// add parameter to allocate stack_b with the last size as stack_a
+static int	dynamic_arr(int **res, int n)
+{
+	int			*tmp;
+	static int	i = 0;
+	static int	size = 1;
+
+	if (i == size)
+	{
+		if (ft_calloc2(size * 2, sizeof(int), (void **) &tmp))
+			return (1);
+		ft_memcpy(tmp, *res, size * sizeof(int));
+		free(*res);
+		*res = tmp;
+		size = size * 2;
+	}
+	(*res)[i++] = n;
 	return (0);
 }
 
@@ -52,6 +103,9 @@ int	ft_check_input(char **argv)
 			split++;
 		}
 	}
+	if (ft_check_dup(stack_a))
+		return (1);
+
 	// int j = 0;
 	// ft_printf("%s	|\n", "stack_a");
 	// ft_printf("%s\n", "--------|");
@@ -63,48 +117,15 @@ int	ft_check_input(char **argv)
 	return (0);
 }
 
-static int	dynamic_arr(int **res, int n)
+int	main(int argc, char **argv)
 {
-	int			*tmp;
-	static int	i = 0;
-	static int	size = 1;
-
-	if (i == size)
-	{
-		if (ft_calloc2(size * 2, sizeof(int), (void **) &tmp))
-			return (1);
-		ft_memcpy(tmp, *res, size * sizeof(int));
-		free(*res);
-		*res = tmp;
-		size = size * 2;
-	}
-	(*res)[i++] = n;
-	return (0);
-}
-
-// valid (0): number with max one sign (+/-)
-static int	ft_check_num(char *str)
-{
-	int	i;
-	int	has_sign;
-
-	i = 0;
-	has_sign = 0;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		has_sign = 1;
-		i++;
-	}
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (1);
-		i++;
-	}
-	if (has_sign && i == 1)
+	if (argc < 2)
 		return (1);
+	if (ft_check_input(argv))
+		return (ft_printf("%s\n", "Error"), 1);
 	return (0);
 }
+
 
 // linked list
 // int	ft_check_input(char **argv)
