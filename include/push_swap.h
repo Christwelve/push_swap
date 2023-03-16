@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/14 16:10:50 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:56:38 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct s_circle
 	unsigned long	start;
 
 }	t_circle;
+
+int				create_stack(t_circle *stack, size_t size);
+unsigned int	calc_index(t_circle *stack, long index);
+int				add_element(t_circle *stack, int element, unsigned long index);
+int				get_element(t_circle *stack, unsigned long index);
+
 
 
 #endif

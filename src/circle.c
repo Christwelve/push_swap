@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:46:27 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/14 18:58:58 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:33:49 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ unsigned int	calc_index(t_circle *stack, long index)
 
 int	add_element(t_circle *stack, int element, unsigned long index)
 {
-
+	index = calc_index(stack, index);
+	stack->elements[index] = element;
 }
 
-int get_element(t_circle *stack, unsigned long)
+int	get_element(t_circle *stack, unsigned long index)
 {
-
+	index = calc_index(stack, index);
+	return (stack->elements[index]);
 }

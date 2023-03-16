@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/14 19:07:57 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:36:11 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_check_num(char *str)
 	return (0);
 }
 
-// add parameter to allocate stack_b with the last size as stack_a
+// todo: add parameter to allocate stack_b with the last size as stack_a
 static int	dynamic_arr(int **res, int n)
 {
 	int			*tmp;
