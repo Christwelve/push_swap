@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/21 17:12:28 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:25:54 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ void			ra(t_circle *stack);
 void			rb(t_circle *stack);
 void			rr(t_circle *stack_a, t_circle *stack_b);
 
-
-
-
+void			reverse_rotate(t_circle *stack);
+void			rra(t_circle *stack_a);
+void			rrb(t_circle *stack_b);
+void			rrr(t_circle *stack_a, t_circle *stack_b);
 
 #endif

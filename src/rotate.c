@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:52 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/21 17:08:45 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:21:27 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ void	rotate(t_circle *stack)
 
 	element = get_element(stack, 0);
 	stack->start = calc_index(stack, 1);
-	add_element(stack, element, stack_.size - 1);
+	add_element(stack, element, stack->size - 1);
 }
 
-void	ra(t_circle *stack)
+void	ra(t_circle *stack_a)
 {
-	rotate(stack);
+	rotate(stack_a);
 	printf("%s", "ra");
 }
 
-void	rb(t_circle *stack)
+void	rb(t_circle *stack_b)
 {
-	rotate(stack);
+	rotate(stack_b);
 	printf("%s", "rb");
 }
 

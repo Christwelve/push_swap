@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:46 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/21 16:52:05 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:20:50 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	swap(t_circle *stack)
 	add_element(stack, first, 1);
 }
 
-void	sa(t_circle *stack)
+void	sa(t_circle *stack_a)
 {
-	swap(stack);
+	swap(stack_a);
 	ft_printf("%s", "sa");
 }
 
-void	sb(t_circle *stack)
+void	sb(t_circle *stack_b)
 {
-	swap(stack);
+	swap(stack_b);
 	ft_printf("%s", "sb");
 }
 
