@@ -1,11 +1,11 @@
 
 NAME		= 	push_swap
-FLAGS		= 	-Wall -Werror -Wextra
+CFLAGS		= 	-Wall -Werror -Wextra
 CC			= 	cc
 RM			=	rm -rf
 INCLUDE 	= 	-I include
 
-MAN_FILES	=	src/main.c \
+MAN_FILES	=	src/main.c src/utils.c\
 
 MAN_OBJ		=	$(MAN_FILES:.c=.o)
 
@@ -16,20 +16,24 @@ BLUE		=	\033[0;94m
 WHITE		=	\033[0m
 
 
+ifdef DEBUG
+	CFLAGS += -g
+endif
+
 # RULES
 
 all: $(NAME)
 
 $(NAME): $(LIBS) $(MAN_OBJ)
-	$(CC) $(FLAGS) -o $(NAME) $(MAN_OBJ) $(LIBS) $(INCLUDE)
+	$(CC) $(CFLAGS) -o $(NAME) $(MAN_OBJ) $(LIBS) $(INCLUDE)
 	@echo "$(GREEN)*** push_swap compiled!***$(WHITE)"
 
 %.o: %.c $(INCLUDE)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBS):
 	@if [ ! -d "./libs" ]; then git clone https://github.com/Christwelve/libs.git; fi
-	@make --silent -C libs
+	@make --silent DEBUG=$(DEBUG) -C libs
 
 clean:
 	$(RM) $(MAN_OBJ)
