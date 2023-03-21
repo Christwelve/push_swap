@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/21 14:21:48 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:35:06 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	parse(char **argv, t_circle *stack_a, t_circle *stack_b)
 		|| ft_mallocp(i * sizeof(int), (void **) &stack_b->elements))
 		return (1);
 	ft_memcpy((void *) stack_a->elements, (const void *) a, i * sizeof(int));
-	// print_stacks(stack_a, stack_b, i);
+	print_stacks(stack_a, stack_b, i);
 	return (free(a), 0);
 }
 
