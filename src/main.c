@@ -6,25 +6,11 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/21 16:35:06 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/22 02:17:05 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-//  dev-tool
-static void	print_stacks(t_circle *stack_a, t_circle *stack_b, int i)
-{
-	ft_printf("%s\n", "stack_a	| stack_b");
-	ft_printf("%s\n", "--------|---------");
-	int j = 0;
-	while (j < i)
-	{
-		ft_printf("%i	|", stack_a->elements[j]);
-		ft_printf("%i	 |\n", stack_b->elements[j]);
-		j++;
-	}
-}
 
 static int	check_input(char **argv)
 {
@@ -72,8 +58,59 @@ static int	parse(char **argv, t_circle *stack_a, t_circle *stack_b)
 		|| ft_mallocp(i * sizeof(int), (void **) &stack_b->elements))
 		return (1);
 	ft_memcpy((void *) stack_a->elements, (const void *) a, i * sizeof(int));
-	print_stacks(stack_a, stack_b, i);
+	stack_a->size = i;
+	stack_b->size = i;
+	// print_stacks(stack_a, stack_b, i);
 	return (free(a), 0);
+}
+
+int	is_sorted(t_circle *stack)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		if (stack->elements[i] > stack->elements[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	get_pos(t_circle *stack, int element)
+{
+	size_t	i;
+	int		pos;
+
+	i = 0;
+	pos = 1;
+	while (i < stack->size)
+	{
+		if (element > stack->elements[i])
+			pos++;
+		i++;
+	}
+	return (pos);
+}
+
+int	get_median(t_circle *stack)
+{
+	return (stack->size / 2);
+}
+
+// dev-tool
+static void	print_stacks(t_circle *stack_a, t_circle *stack_b)
+{
+	ft_printf("%s\n", "stack_a	| stack_b");
+	ft_printf("%s\n", "--------|---------");
+	size_t j = 0;
+	while (j < stack_a->size)
+	{
+		ft_printf("%i	|", stack_a->elements[j]);
+		ft_printf("%i	 |\n", stack_b->elements[j]);
+		j++;
+	}
 }
 
 
@@ -89,5 +126,11 @@ int	main(int argc, char **argv)
 		return (ft_printf("%s\n", "Error"), 1);
 	if (parse(argv, &stack_a, &stack_b))
 		return (ft_printf("%s\n", "Error"), 1);
+	print_stacks(&stack_a, &stack_b);
+
+	printf("\nis_sorted = %i\n", is_sorted(&stack_a));
+	printf("\nvalue	= %i", stack_a.elements[2]);
+	printf("\npos	= %i\n", get_pos(&stack_a, stack_a.elements[2]));
+
 	return (0);
 }
