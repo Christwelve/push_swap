@@ -5,7 +5,8 @@ CC			= 	cc
 RM			=	rm -rf
 INCLUDE 	= 	-I include
 
-MAN_FILES	=	src/main.c src/utils.c\
+MAN_FILES	=	src/main.c src/circle.c src/utils_parse.c src/utils_algorithm.c \
+				src/push.c src/swap.c src/rotate.c src/reverse_rotate.c \
 
 MAN_OBJ		=	$(MAN_FILES:.c=.o)
 

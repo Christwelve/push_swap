@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/22 02:00:33 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/23 21:39:29 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,36 @@ typedef struct s_circle
 
 }	t_circle;
 
+// typedef struct s_elements
+// {
+// 	int			value;
+// 	size_t		pos;
+
+// }	t_elements
+
+/*
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ Utils                                                                   │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
 int				is_dup(int *stack);
 int				is_num(char *str);
 int				int_max(long n);
 int				dynamic_arr(int **res, int n);
 
+int				is_sorted(t_circle *stack);
+int				get_pos(t_circle *stack, int element);
+
 int				create_stack(t_circle *stack, size_t size);
 unsigned int	calc_index(t_circle *stack, long index);
-int				add_element(t_circle *stack, int element, unsigned long index);
+void			add_element(t_circle *stack, int element, unsigned long index);
 int				get_element(t_circle *stack, unsigned long index);
 
+/*
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ Operations                                                              │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
 void			push(t_circle *stack_a, t_circle *stack_b);
 void			pa(t_circle *stack_a, t_circle *stack_b);
 void			pb(t_circle *stack_a, t_circle *stack_b);

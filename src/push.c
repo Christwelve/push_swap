@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:57 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/21 17:29:41 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/23 21:12:01 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push(t_circle *stack_a, t_circle *stack_b)
 {
-	t_circle	element;
+	int	element;
 
 	element = get_element(stack_a, 1);
 	stack_a->start = calc_index(stack_a, 1);

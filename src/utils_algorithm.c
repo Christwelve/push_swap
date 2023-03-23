@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*   utils_algorithm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 17:15:06 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/23 21:12:19 by cmeng            ###   ########.fr       */
+/*   Created: 2023/03/23 21:15:35 by cmeng             #+#    #+#             */
+/*   Updated: 2023/03/23 21:16:05 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	reverse_rotate(t_circle *stack)
+int	is_sorted(t_circle *stack)
 {
-	int	element;
+	size_t	i;
 
-	element = get_element(stack, stack->size - 1);
-	stack->start = calc_index(stack, -1);
-	add_element(stack, element, 0);
+
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		if (stack->elements[i] > stack->elements[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-void	rra(t_circle *stack_a)
+int	get_pos(t_circle *stack, int element)
 {
-	reverse_rotate(stack_a);
-	printf("%s", "rra");
-}
+	size_t	i;
+	int		pos;
 
-void	rrb(t_circle *stack_b)
-{
-	reverse_rotate(stack_b);
-	printf("%s", "rrb");
-}
-
-void	rrr(t_circle *stack_a, t_circle *stack_b)
-{
-	rra(stack_a);
-	rrb(stack_b);
-	printf("%s", "rrr");
+	i = 0;
+	pos = 1;
+	while (i < stack->size)
+	{
+		if (element > stack->elements[i])
+			pos++;
+		i++;
+	}
+	return (pos);
 }
