@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:52 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/23 21:12:40 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/26 15:09:19 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	rotate(t_circle *stack)
 {
 	int	element;
-
+	
+	if (stack->size < 2)
+		return ;
 	element = get_element(stack, 0);
 	stack->start = calc_index(stack, 1);
 	add_element(stack, element, stack->size - 1);
@@ -24,18 +26,18 @@ void	rotate(t_circle *stack)
 void	ra(t_circle *stack_a)
 {
 	rotate(stack_a);
-	printf("%s", "ra");
+	printf("%s\n", "ra");
 }
 
 void	rb(t_circle *stack_b)
 {
 	rotate(stack_b);
-	printf("%s", "rb");
+	printf("%s\n", "rb");
 }
 
 void	rr(t_circle *stack_a, t_circle *stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	printf("%s", "rr");
+	printf("%s\n", "rr");
 }
