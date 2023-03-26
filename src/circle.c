@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   circle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:46:27 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/25 00:43:19 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/26 15:29:22 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	create_stack(t_circle *stack, size_t size)
 {
-	if (ft_mallocp(size * sizeof(int), (void**) &stack->elements))
+	if (ft_mallocp(size * sizeof(int), (void **) &stack->elements))
 		return (1);
 	stack->size = 0;
 	stack->start = 0;
