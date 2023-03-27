@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/26 20:39:51 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/27 16:12:57 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 typedef struct s_circle
 {
-    int             *values;
 	int				*elements;
 	size_t			size;
 	size_t			max_size;
@@ -25,26 +24,21 @@ typedef struct s_circle
 
 }	t_circle;
 
-// typedef struct s_elements
-// {
-// 	int			value;
-// 	size_t		pos;
-
-// }	t_elements
 
 /*
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ Utils                                                                   │
-  └─────────────────────────────────────────────────────────────────────────┘
+	┌─────────────────────────────────────────────────────────────────────────┐
+	│ Utils                                                                   │
+	└─────────────────────────────────────────────────────────────────────────┘
  */
+
 int				is_dup(int *stack);
 int				is_num(char *str);
 int				int_max(long n);
 int				dynamic_arr(int **res, int n);
 
 int				is_sorted(t_circle *stack);
-// int				get_pos(t_circle *stack, int element);
-// int				get_pos(t_circle *stack_a, int *a, int nbr);
+int				get_pos(int *values, size_t i, size_t size);
+int				same_digits(size_t size, t_circle *stack_a, int pos);
 
 int				create_stack(t_circle *stack, size_t size);
 unsigned int	calc_index(t_circle *stack, long index);
@@ -52,10 +46,11 @@ void			add_element(t_circle *stack, int element, long index);
 int				get_element(t_circle *stack, long index);
 
 /*
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ Operations                                                              │
-  └─────────────────────────────────────────────────────────────────────────┘
+	┌─────────────────────────────────────────────────────────────────────────┐
+	│ Operations                                                              │
+	└─────────────────────────────────────────────────────────────────────────┘
  */
+
 void			push(t_circle *stack_a, t_circle *stack_b);
 void			pa(t_circle *stack_a, t_circle *stack_b);
 void			pb(t_circle *stack_a, t_circle *stack_b);

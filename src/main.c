@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/26 20:45:09 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/27 18:52:48 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,112 +32,6 @@ static int	check_input(char **argv)
 	return (0);
 }
 
-/*
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ Position Approach                                                       │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
-
-// static int	parse(char **argv, t_circle *stack_a, t_circle *stack_b)
-// {
-// 	int		i;
-// 	char	**split;
-// 	int		*a;
-
-// 	i = 0;
-// 	if (ft_mallocp(1 * sizeof(int), (void **) &a))
-// 		return (1);
-// 	while (*(++argv) != NULL)
-// 	{
-// 		split = ft_split(*argv, ' ');
-// 		while (*split != NULL)
-// 		{
-// 			if (dynamic_arr(&a, ft_atol(*split)))
-// 				return (free(a), 1);
-// 			split++;
-// 			i++;
-// 		}
-// 	}
-// 	if (is_dup(a))
-// 		return (free(a), 1);
-// }
-// 	// create_stack(stack_a, sizeof(int));
-// 	// create_stack(stack_b, sizeof(int));
-// 	// stack_a->max_size = i;
-// 	// stack_b->max_size = i;
-// 	stack_a->size = i;
-// 	stack_b->size = i;
-
-// 	if (ft_mallocp(i * sizeof(int), (void **) &stack_a->elements)
-// 		|| ft_mallocp(i * sizeof(int), (void **) &stack_b->elements))
-// 		return (1);
-
-	// int j = 0;
-	// while (a[j])
-	// {
-	// 	printf("Pos:    %i\n", get_pos(stack_a, a, a[j]));
-	// 	stack_a->elements[j] = get_pos(stack_a, a, a[j]);
-	// 	// ft_memset((void *) stack_a->elements, get_pos(stack_a, a, a[j]))
-	// 	// stack_a->elements++;
-	// 	j++;
-	// }
-
-// 	// if (ft_mallocp(i * sizeof(int), (void **) &stack_a->elements)
-// 	// 	|| ft_mallocp(i * sizeof(int), (void **) &stack_b->elements))
-// 	// 	return (1);
-// 	ft_memcpy((void *) stack_a->elements, (const void *) a, i * sizeof(int));
-// 	// print_stacks(stack_a, stack_b, i);
-// 	return (free(a), 0);
-
-// }
-
-// static int	parse(char **argv, t_circle *stack_a, t_circle *stack_b)
-// {
-// 	int		i;
-// 	char	**split;
-
-// 	i = 0;
-// 	if (ft_mallocp(1 * sizeof(int), (void **) &stack_a->values))
-// 		return (1);
-// 	while (*(++argv) != NULL)
-// 	{
-// 		split = ft_split(*argv, ' ');
-// 		while (*split != NULL)
-// 		{
-// 			if (dynamic_arr(&stack_a->values, ft_atol(*split)))
-// 				return (free(stack_a->values), 1);
-// 			split++;
-// 			i++;
-// 		}
-// 	}
-// 	if (is_dup(stack_a->values))
-// 		return (free(stack_a->values), 1);
-
-// 	// int j = 0;
-// 	// while(stack_a->values[j])
-// 	// {
-// 	// 	printf("Value:	%i\n", stack_a->values[j]);
-// 	// 	j++;
-// 	// }
-// 	stack_a->max_size = i;
-// 	stack_b->max_size = i;
-// 	stack_a->size = i;
-// 	stack_a->size = 0;
-
-// 	if (ft_mallocp(i * sizeof(int), (void **) &stack_a->elements)
-// 		|| ft_mallocp(i * sizeof(int), (void **) &stack_b->elements))
-// 		return (1);
-// 	size_t j = 0;
-// 	while (j < stack_a->size)
-// 	{
-// 		// printf("Pos:    %i\n", get_pos(stack_a, stack_a->values, stack_a->values[j]));
-// 		stack_a->elements[j] = get_pos(stack_a, stack_a->values, stack_a->values[j]);
-// 		j++;
-// 	}
-// 	// ft_memcpy((void *) stack_a->elements, (const void *) stack_a->values, i * sizeof(int));
-// 	return (0);
-// }
-
 static int	parse(char **argv, int **values, size_t *size)
 {
 	int		i;
@@ -161,24 +55,6 @@ static int	parse(char **argv, int **values, size_t *size)
 	return (0);
 }
 
-int	get_pos(int *values, size_t i, size_t size)
-{
-	int		value;
-	int		pos;
-	size_t	j;
-
-	j = 0;
-	pos = 0;
-	value = values[i];
-	while (j < size)
-	{
-		if (values[j] < value)
-			pos++;
-		j++;
-	}
-	return (pos);
-}
-
 void	fill_stack(t_circle *stack, int *values, size_t size)
 {
 	size_t	i;
@@ -192,61 +68,109 @@ void	fill_stack(t_circle *stack, int *values, size_t size)
 	stack->size = size;
 }
 
-// static int	fill_stack(t_circle stack_a, t_circle stack_b)
-// {
-
-// }
-// static int	parse(char **argv, t_circle *stack_a, t_circle *stack_b)
-// {
-// 	int		i;
-// 	char	**split;
-// 	int		*a;
-
-// 	i = 0;
-// 	if (ft_mallocp(1 * sizeof(int), (void **) &a))
-// 		return (1);
-// 	while (*(++argv) != NULL)
-// 	{
-// 		split = ft_split(*argv, ' ');
-// 		while (*split != NULL)
-// 		{
-// 			if (dynamic_arr(&a, ft_atol(*split)))
-// 				return (free(a), 1);
-// 			split++;
-// 			i++;
-// 		}
-// 	}
-// 	if (is_dup(a))
-// 		return (free(a), 1);
-// 	if (ft_mallocp(i * sizeof(int), (void **) &stack_a->elements)
-// 		|| ft_mallocp(i * sizeof(int), (void **) &stack_b->elements))
-// 		return (1);
-// 	ft_memcpy((void *) stack_a->elements, (const void *) a, i * sizeof(int));
-// 	stack_a->size = i;
-// 	stack_b->size = i;
-// 	// print_stacks(stack_a, stack_b, i);
-// 	return (free(a), 0);
-// }
-
-
 /*
   ┌─────────────────────────────────────────────────────────────────────────┐
-  │ dev tool                                                                │
+  │ dev tools                                                               │
   └─────────────────────────────────────────────────────────────────────────┘
  */
-static void	print_stacks(t_circle *stack_a, t_circle *stack_b)
+
+// static void	print_stacks(t_circle *stack_a, t_circle *stack_b, size_t size)
+// {
+// 	printf("\n%s\n", "pos   |stack_a| stack_b");
+// 	printf("%s\n", "------|-------|---------");
+// 	size_t j = 0;
+// 	while (j < size)
+// 	{
+// 		printf("%zu     |", j);
+// 		printf("%i      |", get_pos(stack_a->elements, j, size));
+// 		printf("%i	|\n", stack_b->elements[j]);
+// 		j++;
+// 	}
+// }
+
+void    print_stack(t_circle *stack, size_t size)
 {
-	ft_printf("%s\n", "stack_a	| stack_b");
-	ft_printf("%s\n", "--------|---------");
-	size_t j = 0;
-	while (j < stack_a->size)
-	{
-		ft_printf("%i	|", stack_a->elements[j]);
-		ft_printf("%i	 |\n", stack_b->elements[j]);
-		j++;
-	}
+    if (stack->size == 0)
+    {
+        printf("                    ");
+        return ;
+    }
+    for (unsigned long i = 0; i < size; i++)
+    {
+        if ((i >= stack->start && i <= stack->start + stack->size - 1) || (stack->start + stack->size > size && i <= calc_index(stack, stack->size - 1)))
+            printf("%d ", get_element(stack, i - stack->start));
+        else
+            printf("  ");
+    }
 }
 
+void    print_indices(size_t size)
+{
+    printf("\n");
+    printf("\n");
+    for (size_t i = 0; i < size; i++)
+        printf("%zu ", i);
+    printf("    ");
+    for (size_t i = 0; i < size; i++)
+        printf("%zu ", i);
+    printf("\n");
+}
+
+void    print_stacks(t_circle *stack1, t_circle *stack2, size_t size)
+{
+    print_stack(stack1, size);
+    printf("    ");
+    print_stack(stack2, size);
+    printf("\n");
+    printf("\n");
+}
+
+void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
+{
+	size_t	max;
+	int		pos;
+	int		digit;
+	size_t	i;
+
+	max = stack_a->max_size;
+	pos = 0;
+	while ((1 << pos) <= stack_a->max_size)
+	{
+		i = 0;
+		if (!same_digits(size, stack_a, pos))
+		{
+			while (i < size)
+			{
+				digit = stack_a->elements[stack_a->start] & (1 << pos);
+				printf("v: %i	", stack_a->elements[stack_a->start]);
+				printf("d: %i	", digit);
+				printf("bit : %i	", (1 << pos));
+				printf("pos: %i	", pos);
+				if (digit == 0)
+					ra(stack_a);
+				else
+					pb(stack_a, stack_b);
+				i++;
+			}
+		}
+		print_indices(size);
+		print_stacks(stack_a, stack_b, size);
+		printf("start: %zu	", stack_a->start);
+		printf("start: %zu\n\n--------------------------\n", stack_b->start);
+
+		i = 0;
+		size_t b_size = stack_b->size;
+		while (i < b_size)
+		{
+			pa(stack_a, stack_b);
+			i++;
+		}
+		print_indices(size);
+		print_stacks(stack_a, stack_b, size);
+		printf("start: %zu\n\n--------------------------\n", stack_a->start);
+		pos++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -260,25 +184,30 @@ int	main(int argc, char **argv)
 		return (1);
 	if (check_input(argv))
 		return (ft_printf("%s\n", "Error"), 1);
-	// if (parse(argv, &stack_a, &stack_b))
-	// 	return (ft_printf("%s\n", "Error"), 1);
 	if (parse(argv, &values, &size))
-		return (ft_printf("%s\n", "Error"), 1);
+		return (ft_printf("%s\n", "Error"), 2);
 	if (is_dup(values))
-		return (free(values), 2);
+		return (free(values), ft_printf("%s\n", "Error"), 3);
 	if (create_stack(&stack_a, size))
-		return (free(values), 3);
+		return (free(values), ft_printf("%s\n", "Error"), 4);
 	if (create_stack(&stack_b, size))
-		return (free(values), free(stack_a.elements), 4);
-	ft_printf("%d\n", size);
+		return (free(values), free(stack_a.elements), ft_printf("%s\n", "Error"), 5);
 	fill_stack(&stack_a, values, size);
+	radix_sort(&stack_a, &stack_b, size);
+	// pb(&stack_a, &stack_b);
+	// pb(&stack_a, &stack_b);
+	// sa(&stack_a);
+	// pa(&stack_a, &stack_b);
+	// ra(&stack_a);
+	// ra(&stack_a);
+	print_indices(size);
+	print_stacks(&stack_a, &stack_b, size);
+	printf("start: %zu\n", stack_a.start);
+	// ft_printf("%d\n", size);
+	// ft_printf("%d\n", stack_a.start);
+	// printf("%zu\n", stack_a.max_size);
+	// printf("%zu\n", stack_b.max_size);
 
-	print_stacks(&stack_a, &stack_b);
-
-
-	// printf("\nis_sorted = %i\n", is_sorted(&stack_a));
-	// printf("\nvalue	= %i", stack_a.elements[2]);
-	// printf("\npos	= %i\n", get_pos(&stack_a, stack_a.elements[2]));
 
 	return (0);
 }
