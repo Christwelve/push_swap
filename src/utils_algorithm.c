@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 21:15:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/27 23:49:59 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 22:48:50 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,15 @@ int	same_digits(size_t size, t_circle *stack_a, int pos)
 	return (1);
 }
 
-// int itob(int decimal)
-// {
-//     int shift;
-//     int binary;
-//     int bit;
-//     shift = 0;
-//     binary = 0;
-//     while (decimal > 0 && shift < 10)
-//     {
-//         bit = decimal & 2;
-//         binary = binary | (bit << shift);
-//         decimal = decimal / 2;
-//         shift++;
-//     }
-//     return (binary);
-// }
+void	fill_stack(t_circle *stack, int *values, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		stack->elements[i] = get_pos(values, i, size);
+		i++;
+	}
+	stack->size = size;
+}

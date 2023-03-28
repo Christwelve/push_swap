@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/28 22:41:01 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 22:58:59 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,91 +53,6 @@ static int	parse(char **argv, int **values, size_t *size)
 	}
 	*size = i;
 	return (0);
-}
-
-void	fill_stack(t_circle *stack, int *values, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		stack->elements[i] = get_pos(values, i, size);
-		i++;
-	}
-	stack->size = size;
-}
-
-void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
-{
-	int		pos;
-	int		digit;
-	size_t	i;
-
-	pos = 0;
-	while ((1 << pos) <= stack_a->max_size)
-	{
-		i = 0;
-		if (!same_digits(size, stack_a, pos))
-		{
-			while (i < size)
-			{
-				digit = stack_a->elements[stack_a->start] & (1 << pos);
-				if (digit == 0)
-					pb(stack_a, stack_b);
-				else
-					ra(stack_a);
-				i++;
-			}
-		}
-		while (stack_b->size)
-			pa(stack_a, stack_b);
-		pos++;
-	}
-}
-
-void	simple_sort(t_circle *stack_a)
-{
-	int	a;
-	int	b;
-	int	c;
-
-	a = stack_a->elements[calc_index(stack_a, 0)];
-	b = stack_a->elements[calc_index(stack_a, 1)];
-	c = stack_a->elements[calc_index(stack_a, 2)];
-	if ((a > b) && (b > c) && (a > c))
-	{
-		sa(stack_a);
-		rra(stack_a);
-	}
-	else if ((a > b) && (b < c) && (a < c))
-		sa(stack_a);
-	else if ((a < b) && (b > c) && (a < c))
-	{
-		sa(stack_a);
-		ra(stack_a);
-	}
-	else if ((a > b) && (b < c) && (a > c))
-		ra(stack_a);
-	else if ((a < b) && (b > c) && (a > c))
-		rra(stack_a);
-}
-
-void	five_sort(t_circle *stack_a, t_circle *stack_b)
-{
-	while (stack_a->size > 3)
-	{
-		if (stack_a->elements[stack_a->start] < 2)
-			pb(stack_a, stack_b);
-		else
-			ra(stack_a);
-	}
-	simple_sort(stack_a);
-	if (stack_b->elements[calc_index(stack_b, 0)]
-		< stack_b->elements[calc_index(stack_b, 1)])
-		sb(stack_b);
-	while (stack_b->size)
-		pa(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)

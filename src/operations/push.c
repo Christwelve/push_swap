@@ -6,11 +6,11 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:57 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/28 21:06:53 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 23:02:13 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 void	push(t_circle *stack_a, t_circle *stack_b)
 {

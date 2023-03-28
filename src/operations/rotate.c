@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 17:37:46 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/28 18:52:46 by cmeng            ###   ########.fr       */
+/*   Created: 2023/03/16 17:37:52 by cmeng             #+#    #+#             */
+/*   Updated: 2023/03/28 23:02:07 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
-void	swap(t_circle *stack)
+void	rotate(t_circle *stack)
 {
-	int	first;
+	int	element;
 
 	if (stack->size < 2)
 		return ;
-	first = get_element(stack, 0);
-	add_element(stack, get_element(stack, 1), 0);
-	add_element(stack, first, 1);
+	element = get_element(stack, 0);
+	stack->start = calc_index(stack, 1);
+	add_element(stack, element, stack->size - 1);
 }
 
-void	sa(t_circle *stack_a)
+void	ra(t_circle *stack_a)
 {
-	swap(stack_a);
-	ft_printf("%s\n", "sa");
+	rotate(stack_a);
+	ft_printf("%s\n", "ra");
 }
 
-void	sb(t_circle *stack_b)
+void	rb(t_circle *stack_b)
 {
-	swap(stack_b);
-	ft_printf("%s\n", "sb");
+	rotate(stack_b);
+	ft_printf("%s\n", "rb");
 }
 
-void	ss(t_circle *stack_a, t_circle *stack_b)
+void	rr(t_circle *stack_a, t_circle *stack_b)
 {
-	swap(stack_a);
-	swap(stack_b);
-	ft_printf("%s\n", "ss");
+	rotate(stack_a);
+	rotate(stack_b);
+	ft_printf("%s\n", "rr");
 }
