@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/28 02:04:29 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 16:44:59 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,29 +155,46 @@ void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
 
 void	simple_sort(t_circle *stack_a)
 {
-	if ((stack_a->elements[0] > stack_a->elements[1])
-		&& (stack_a->elements[1] > stack_a->elements[2]))
+	int	a;
+	int	b;
+	int	c;
+
+	a = stack_a->elements[calc_index(stack_a, 0)];
+	b = stack_a->elements[calc_index(stack_a, 1)];
+	c = stack_a->elements[calc_index(stack_a, 2)];
+	if ((a > b) && (b > c) && (a > c))
 	{
 		sa(stack_a);
 		rra(stack_a);
 	}
-	else if ((stack_a->elements[0] > stack_a->elements[1])
-		&& (stack_a->elements[1] < stack_a->elements[2]))
+	else if ((a > b) && (b < c) && (a < c))
 		sa(stack_a);
-	else if ((stack_a->elements[0] < stack_a->elements[1])
-		&& (stack_a->elements[1] > stack_a->elements[2]))
+	else if ((a < b) && (b > c) && (a < c))
 	{
 		sa(stack_a);
 		ra(stack_a);
 	}
-	else if ((stack_a->elements[0] > stack_a->elements[1])
-		&& (stack_a->elements[1] < stack_a->elements[2]))
+	else if ((a > b) && (b < c) && (a > c))
 		ra(stack_a);
-	else if ((stack_a->elements[0] < stack_a->elements[1])
-		&& (stack_a->elements[1] > stack_a->elements[2]))
+	else if ((a < b) && (b > c) && (a > c))
 		rra(stack_a);
 }
 
+void	five_sort(t_circle *stack_a, t_circle *stack_b)
+{
+	while (stack_a->size > 3)
+	{
+		if (stack_a->elements[stack_a->start] < 2)
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
+	}
+	simple_sort(stack_a);
+	if (stack_b->elements[calc_index(stack_b, 0)] < stack_b->elements[calc_index(stack_b, 1)])
+		sb(stack_b);
+	while (stack_b->size)
+		pa(stack_a, stack_b);
+}
 
 int	main(int argc, char **argv)
 {
@@ -203,6 +220,8 @@ int	main(int argc, char **argv)
 	fill_stack(&stack_a, values, size);
 	if (size == 3)
 		simple_sort(&stack_a);
+	if (size == 5)
+		five_sort(&stack_a, &stack_b);
 	else
 		radix_sort(&stack_a, &stack_b, size);
 	return (0);
