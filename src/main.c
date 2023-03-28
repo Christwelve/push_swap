@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/28 22:58:59 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 23:16:06 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	check_input(char **argv)
 	while (*(++argv) != NULL)
 	{
 		split = ft_split(*argv, ' ');
+		if (*split == NULL)
+			return (free(split), 1);
 		while (*split != NULL)
 		{
 			n = ft_atol(*split);
@@ -43,6 +45,8 @@ static int	parse(char **argv, int **values, size_t *size)
 	while (*(++argv) != NULL)
 	{
 		split = ft_split(*argv, ' ');
+		if (*split == NULL)
+			return (free(split), 1);
 		while (*split != NULL)
 		{
 			if (dynamic_arr(values, ft_atol(*split)))
