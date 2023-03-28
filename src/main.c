@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/28 16:44:59 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 22:41:01 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,63 +67,6 @@ void	fill_stack(t_circle *stack, int *values, size_t size)
 	}
 	stack->size = size;
 }
-
-/*
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ dev tools                                                               │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
-
-// static void	print_stacks(t_circle *stack_a, t_circle *stack_b, size_t size)
-// {
-// 	printf("\n%s\n", "pos   |stack_a| stack_b");
-// 	printf("%s\n", "------|-------|---------");
-// 	size_t j = 0;
-// 	while (j < size)
-// 	{
-// 		printf("%zu     |", j);
-// 		printf("%i      |", get_pos(stack_a->elements, j, size));
-// 		printf("%i	|\n", stack_b->elements[j]);
-// 		j++;
-// 	}
-// }
-
-// void    print_stack(t_circle *stack, size_t size)
-// {
-//     if (stack->size == 0)
-//     {
-//         printf("                    ");
-//         return ;
-//     }
-//     for (unsigned long i = 0; i < size; i++)
-//     {
-//         if ((i >= stack->start && i <= stack->start + stack->size - 1) || (stack->start + stack->size > size && i <= calc_index(stack, stack->size - 1)))
-//             printf("%d ", get_element(stack, i - stack->start));
-//         else
-//             printf("  ");
-//     }
-// }
-
-// void    print_indices(size_t size)
-// {
-//     printf("\n");
-//     printf("\n");
-//     for (size_t i = 0; i < size; i++)
-//         printf("%zu ", i);
-//     printf("    ");
-//     for (size_t i = 0; i < size; i++)
-//         printf("%zu ", i);
-//     printf("\n");
-// }
-
-// void    print_stacks(t_circle *stack1, t_circle *stack2, size_t size)
-// {
-//     print_stack(stack1, size);
-//     printf("    ");
-//     print_stack(stack2, size);
-//     printf("\n");
-//     printf("\n");
-// }
 
 void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
 {
@@ -190,7 +133,8 @@ void	five_sort(t_circle *stack_a, t_circle *stack_b)
 			ra(stack_a);
 	}
 	simple_sort(stack_a);
-	if (stack_b->elements[calc_index(stack_b, 0)] < stack_b->elements[calc_index(stack_b, 1)])
+	if (stack_b->elements[calc_index(stack_b, 0)]
+		< stack_b->elements[calc_index(stack_b, 1)])
 		sb(stack_b);
 	while (stack_b->size)
 		pa(stack_a, stack_b);
@@ -205,10 +149,8 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	if (check_input(argv))
+	if (check_input(argv) || parse(argv, &values, &size))
 		return (std_error(), 1);
-	if (parse(argv, &values, &size))
-		return (std_error(), 2);
 	if (is_dup(values, size))
 		return (free(values), std_error(), 3);
 	if (is_sorted(values, size))
@@ -220,7 +162,7 @@ int	main(int argc, char **argv)
 	fill_stack(&stack_a, values, size);
 	if (size == 3)
 		simple_sort(&stack_a);
-	if (size == 5)
+	else if (size == 5)
 		five_sort(&stack_a, &stack_b);
 	else
 		radix_sort(&stack_a, &stack_b, size);

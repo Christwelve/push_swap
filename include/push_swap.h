@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/27 23:53:02 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 21:27:08 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ int				get_element(t_circle *stack, long index);
 	└─────────────────────────────────────────────────────────────────────────┘
  */
 
-void			push(t_circle *stack_a, t_circle *stack_b);
-void			pa(t_circle *stack_a, t_circle *stack_b);
-void			pb(t_circle *stack_a, t_circle *stack_b);
-
 void			swap(t_circle *stack);
 void			sa(t_circle *stack);
 void			sb(t_circle *stack);
 void			ss(t_circle *stack_a, t_circle *stack_b);
+
+void			push(t_circle *stack_a, t_circle *stack_b);
+void			pa(t_circle *stack_a, t_circle *stack_b);
+void			pb(t_circle *stack_a, t_circle *stack_b);
 
 void			rotate(t_circle *stack);
 void			ra(t_circle *stack);

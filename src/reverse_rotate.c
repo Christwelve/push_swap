@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:15:06 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/26 15:09:32 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/28 22:11:02 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ void	reverse_rotate(t_circle *stack)
 void	rra(t_circle *stack_a)
 {
 	reverse_rotate(stack_a);
-	printf("%s\n", "rra");
+	ft_printf("%s\n", "rra");
 }
 
 void	rrb(t_circle *stack_b)
 {
 	reverse_rotate(stack_b);
-	printf("%s\n", "rrb");
+	ft_printf("%s\n", "rrb");
 }
 
 void	rrr(t_circle *stack_a, t_circle *stack_b)
 {
 	rra(stack_a);
 	rrb(stack_b);
-	printf("%s\n", "rrr");
+	ft_printf("%s\n", "rrr");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:57 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/26 15:08:06 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/28 21:06:53 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	push(t_circle *stack_a, t_circle *stack_b)
 
 void	pa(t_circle *stack_a, t_circle *stack_b)
 {
-	printf("%s\n", "pa");
 	push(stack_a, stack_b);
+	ft_printf("%s\n", "pa");
 }
 
 void	pb(t_circle *stack_a, t_circle *stack_b)
 {
-	printf("%s\n", "pb");
 	push(stack_b, stack_a);
+	ft_printf("%s\n", "pb");
 }
