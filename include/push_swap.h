@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/27 16:12:57 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/27 23:53:02 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ typedef struct s_circle
 	└─────────────────────────────────────────────────────────────────────────┘
  */
 
-int				is_dup(int *stack);
+void			std_error(void);
+int				is_dup(int *stack, size_t size);
 int				is_num(char *str);
 int				int_max(long n);
 int				dynamic_arr(int **res, int n);
 
-int				is_sorted(t_circle *stack);
+int				is_sorted(int *stack, size_t size);
 int				get_pos(int *values, size_t i, size_t size);
 int				same_digits(size_t size, t_circle *stack_a, int pos);
 

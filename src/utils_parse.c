@@ -6,11 +6,16 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:01:14 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/26 20:08:20 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/27 23:52:42 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+void	std_error(void)
+{
+	write(2, "Error\n", 6);
+}
 
 int	int_max(long n)
 {
@@ -19,16 +24,16 @@ int	int_max(long n)
 	return (0);
 }
 
-int	is_dup(int *stack)
+int	is_dup(int *stack, size_t size)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (stack[i])
+	while (i < size)
 	{
 		j = i + 1;
-		while (stack[j])
+		while (j < size)
 		{
 			if (stack[i] == stack[j])
 				return (1);

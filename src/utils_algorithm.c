@@ -6,21 +6,21 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 21:15:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/27 16:12:44 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/27 23:49:59 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	is_sorted(t_circle *stack)
+int	is_sorted(int *stack, size_t size)
 {
 	size_t	i;
 
 
 	i = 0;
-	while (i < stack->size - 1)
+	while (i < size - 1)
 	{
-		if (stack->elements[i] > stack->elements[i + 1])
+		if (stack[i] > stack[i + 1])
 			return (0);
 		i++;
 	}

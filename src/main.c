@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/27 18:52:48 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/28 02:04:29 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,51 +88,49 @@ void	fill_stack(t_circle *stack, int *values, size_t size)
 // 	}
 // }
 
-void    print_stack(t_circle *stack, size_t size)
-{
-    if (stack->size == 0)
-    {
-        printf("                    ");
-        return ;
-    }
-    for (unsigned long i = 0; i < size; i++)
-    {
-        if ((i >= stack->start && i <= stack->start + stack->size - 1) || (stack->start + stack->size > size && i <= calc_index(stack, stack->size - 1)))
-            printf("%d ", get_element(stack, i - stack->start));
-        else
-            printf("  ");
-    }
-}
+// void    print_stack(t_circle *stack, size_t size)
+// {
+//     if (stack->size == 0)
+//     {
+//         printf("                    ");
+//         return ;
+//     }
+//     for (unsigned long i = 0; i < size; i++)
+//     {
+//         if ((i >= stack->start && i <= stack->start + stack->size - 1) || (stack->start + stack->size > size && i <= calc_index(stack, stack->size - 1)))
+//             printf("%d ", get_element(stack, i - stack->start));
+//         else
+//             printf("  ");
+//     }
+// }
 
-void    print_indices(size_t size)
-{
-    printf("\n");
-    printf("\n");
-    for (size_t i = 0; i < size; i++)
-        printf("%zu ", i);
-    printf("    ");
-    for (size_t i = 0; i < size; i++)
-        printf("%zu ", i);
-    printf("\n");
-}
+// void    print_indices(size_t size)
+// {
+//     printf("\n");
+//     printf("\n");
+//     for (size_t i = 0; i < size; i++)
+//         printf("%zu ", i);
+//     printf("    ");
+//     for (size_t i = 0; i < size; i++)
+//         printf("%zu ", i);
+//     printf("\n");
+// }
 
-void    print_stacks(t_circle *stack1, t_circle *stack2, size_t size)
-{
-    print_stack(stack1, size);
-    printf("    ");
-    print_stack(stack2, size);
-    printf("\n");
-    printf("\n");
-}
+// void    print_stacks(t_circle *stack1, t_circle *stack2, size_t size)
+// {
+//     print_stack(stack1, size);
+//     printf("    ");
+//     print_stack(stack2, size);
+//     printf("\n");
+//     printf("\n");
+// }
 
 void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
 {
-	size_t	max;
 	int		pos;
 	int		digit;
 	size_t	i;
 
-	max = stack_a->max_size;
 	pos = 0;
 	while ((1 << pos) <= stack_a->max_size)
 	{
@@ -142,35 +140,44 @@ void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
 			while (i < size)
 			{
 				digit = stack_a->elements[stack_a->start] & (1 << pos);
-				printf("v: %i	", stack_a->elements[stack_a->start]);
-				printf("d: %i	", digit);
-				printf("bit : %i	", (1 << pos));
-				printf("pos: %i	", pos);
 				if (digit == 0)
-					ra(stack_a);
-				else
 					pb(stack_a, stack_b);
+				else
+					ra(stack_a);
 				i++;
 			}
 		}
-		print_indices(size);
-		print_stacks(stack_a, stack_b, size);
-		printf("start: %zu	", stack_a->start);
-		printf("start: %zu\n\n--------------------------\n", stack_b->start);
-
-		i = 0;
-		size_t b_size = stack_b->size;
-		while (i < b_size)
-		{
+		while (stack_b->size)
 			pa(stack_a, stack_b);
-			i++;
-		}
-		print_indices(size);
-		print_stacks(stack_a, stack_b, size);
-		printf("start: %zu\n\n--------------------------\n", stack_a->start);
 		pos++;
 	}
 }
+
+void	simple_sort(t_circle *stack_a)
+{
+	if ((stack_a->elements[0] > stack_a->elements[1])
+		&& (stack_a->elements[1] > stack_a->elements[2]))
+	{
+		sa(stack_a);
+		rra(stack_a);
+	}
+	else if ((stack_a->elements[0] > stack_a->elements[1])
+		&& (stack_a->elements[1] < stack_a->elements[2]))
+		sa(stack_a);
+	else if ((stack_a->elements[0] < stack_a->elements[1])
+		&& (stack_a->elements[1] > stack_a->elements[2]))
+	{
+		sa(stack_a);
+		ra(stack_a);
+	}
+	else if ((stack_a->elements[0] > stack_a->elements[1])
+		&& (stack_a->elements[1] < stack_a->elements[2]))
+		ra(stack_a);
+	else if ((stack_a->elements[0] < stack_a->elements[1])
+		&& (stack_a->elements[1] > stack_a->elements[2]))
+		rra(stack_a);
+}
+
 
 int	main(int argc, char **argv)
 {
@@ -179,35 +186,24 @@ int	main(int argc, char **argv)
 	int			*values;
 	size_t		size;
 
-
 	if (argc < 2)
-		return (1);
+		return (0);
 	if (check_input(argv))
-		return (ft_printf("%s\n", "Error"), 1);
+		return (std_error(), 1);
 	if (parse(argv, &values, &size))
-		return (ft_printf("%s\n", "Error"), 2);
-	if (is_dup(values))
-		return (free(values), ft_printf("%s\n", "Error"), 3);
+		return (std_error(), 2);
+	if (is_dup(values, size))
+		return (free(values), std_error(), 3);
+	if (is_sorted(values, size))
+		return (free(values), 3);
 	if (create_stack(&stack_a, size))
-		return (free(values), ft_printf("%s\n", "Error"), 4);
+		return (free(values), std_error(), 4);
 	if (create_stack(&stack_b, size))
-		return (free(values), free(stack_a.elements), ft_printf("%s\n", "Error"), 5);
+		return (free(values), free(stack_a.elements), std_error(), 5);
 	fill_stack(&stack_a, values, size);
-	radix_sort(&stack_a, &stack_b, size);
-	// pb(&stack_a, &stack_b);
-	// pb(&stack_a, &stack_b);
-	// sa(&stack_a);
-	// pa(&stack_a, &stack_b);
-	// ra(&stack_a);
-	// ra(&stack_a);
-	print_indices(size);
-	print_stacks(&stack_a, &stack_b, size);
-	printf("start: %zu\n", stack_a.start);
-	// ft_printf("%d\n", size);
-	// ft_printf("%d\n", stack_a.start);
-	// printf("%zu\n", stack_a.max_size);
-	// printf("%zu\n", stack_b.max_size);
-
-
+	if (size == 3)
+		simple_sort(&stack_a);
+	else
+		radix_sort(&stack_a, &stack_b, size);
 	return (0);
 }
