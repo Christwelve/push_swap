@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:52 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/31 15:46:43 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/31 15:52:14 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int	is_stack_ok(t_circle *stack_a, size_t size)
 		i++;
 	}
 	ft_printf("%s", "OK");
-	
+	return (0);
 }
 
 int	main(int argc, char **argv)
