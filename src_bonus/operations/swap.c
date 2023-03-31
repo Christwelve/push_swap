@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:46 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/30 20:08:07 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/31 15:48:07 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,15 @@ void	swap(t_circle *stack)
 void	sa(t_circle *stack_a)
 {
 	swap(stack_a);
-	ft_printf("%s\n", "sa");
 }
 
 void	sb(t_circle *stack_b)
 {
 	swap(stack_b);
-	ft_printf("%s\n", "sb");
 }
 
 void	ss(t_circle *stack_a, t_circle *stack_b)
 {
 	swap(stack_a);
 	swap(stack_b);
-	ft_printf("%s\n", "ss");
 }

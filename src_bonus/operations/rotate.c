@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:37:52 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/30 20:07:57 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/31 15:47:56 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,15 @@ void	rotate(t_circle *stack)
 void	ra(t_circle *stack_a)
 {
 	rotate(stack_a);
-	ft_printf("%s\n", "ra");
 }
 
 void	rb(t_circle *stack_b)
 {
 	rotate(stack_b);
-	ft_printf("%s\n", "rb");
 }
 
 void	rr(t_circle *stack_a, t_circle *stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	ft_printf("%s\n", "rr");
 }
