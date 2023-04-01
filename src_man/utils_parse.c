@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:01:14 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/31 16:06:00 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/04/01 17:28:52 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	std_error(void)
 
 int	int_max(long n)
 {
-	if (n < INT32_MIN || n > INT32_MAX)
+	if (n < INT_MIN || n > INT_MAX)
 		return (1);
 	return (0);
 }
