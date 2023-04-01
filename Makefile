@@ -61,4 +61,4 @@ fclean: clean
 re: fclean all
 	@echo "$(GREEN)*** Cleaned and rebuilt push_swap! ***$(WHITE)"
 
-.PHONY:  test clean fclean re all
+.PHONY:  bonus clean fclean re all
