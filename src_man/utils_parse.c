@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:01:14 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/01 17:28:52 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/03 14:22:04 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	dynamic_arr(int **res, int n)
 
 	if (i == size)
 	{
-		if (ft_calloc2(size * 2, sizeof(int), (void **) &tmp))
+		if (ft_calloc2(size * 2, sizeof(int), (void **) &tmp))			
 			return (1);
 		ft_memcpy(tmp, *res, size * sizeof(int));
 		free(*res);

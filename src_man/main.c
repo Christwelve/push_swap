@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/30 17:55:10 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/04/03 14:41:07 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ int	check_input(char **argv)
 {
 	long	n;
 	char	**split;
+	char	**cpy;
 
-	split = NULL;
 	while (*(++argv) != NULL)
 	{
 		split = ft_split(*argv, ' ');
-		if (*split == NULL)
+		if (split == NULL || *split == NULL)
 			return (free(split), 1);
+		cpy = split;
 		while (*split != NULL)
 		{
 			n = ft_atol(*split);
 			if (is_num(*split) || int_max(n))
-				return (1);
+				return (ft_free2((void **) cpy), 1);	
 			split++;
 		}
+		ft_free2((void **) cpy);
 	}
 	return (0);
 }
@@ -38,6 +40,7 @@ int	parse(char **argv, int **values, size_t *size)
 {
 	int		i;
 	char	**split;
+	char	**cpy;
 
 	i = 0;
 	if (ft_mallocp(1 * sizeof(int), (void **) values))
@@ -45,15 +48,17 @@ int	parse(char **argv, int **values, size_t *size)
 	while (*(++argv) != NULL)
 	{
 		split = ft_split(*argv, ' ');
-		if (*split == NULL)
+		if (split == NULL || *split == NULL)
 			return (free(split), 1);
+		cpy = split;	
 		while (*split != NULL)
 		{
 			if (dynamic_arr(values, ft_atol(*split)))
-				return (free(*values), 1);
+				return (free(*values), ft_free2((void **) cpy), 1);
 			split++;
 			i++;
 		}
+		ft_free2((void **) cpy);
 	}
 	*size = i;
 	return (0);
@@ -68,8 +73,10 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	if (check_input(argv) || parse(argv, &values, &size))
+	if (check_input(argv))
 		return (std_error(), 1);
+	if (parse(argv, &values, &size))
+		return (std_error(), free(values), 1);
 	if (is_dup(values, size))
 		return (free(values), std_error(), 3);
 	if (is_sorted(values, size))
@@ -79,11 +86,15 @@ int	main(int argc, char **argv)
 	if (create_stack(&stack_b, size))
 		return (free(values), free(stack_a.elements), std_error(), 5);
 	fill_stack(&stack_a, values, size);
-	if (size == 3)
+	if (size <= 3)
 		simple_sort(&stack_a);
 	else if (size == 5)
 		five_sort(&stack_a, &stack_b);
 	else
 		radix_sort(&stack_a, &stack_b, size);
+	
+	free(values);
+	free(stack_a.elements);
+	free(stack_b.elements);	
 	return (0);
 }

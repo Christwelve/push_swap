@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:53:06 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/01 17:29:41 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/03 14:42:47 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
 	size_t	i;
 
 	pos = 0;
-	while ((1 << pos) <= (int) stack_a->max_size)
+	while ((1 << pos) <= (int) stack_a->size)
 	{
 		i = 0;
 		if (!same_digits(size, stack_a, pos))
@@ -63,6 +63,8 @@ void	simple_sort(t_circle *stack_a)
 	int	b;
 	int	c;
 
+	if (stack_a->size == 2)
+		return (sa(stack_a));
 	a = stack_a->elements[calc_index(stack_a, 0)];
 	b = stack_a->elements[calc_index(stack_a, 1)];
 	c = stack_a->elements[calc_index(stack_a, 2)];
