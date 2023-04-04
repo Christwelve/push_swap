@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/04 16:04:41 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/04/04 16:13:28 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ int	main(int argc, char **argv)
 	if (is_dup(values, size))
 		return (free(values), std_error(), 3);
 	if (is_sorted(values, size))
-		return (free(values), 3);
+		return (free(values), 4);
 	if (create_stack(&stack_a, size))
-		return (free(values), std_error(), 4);
+		return (free(values), std_error(), 5);
 	if (create_stack(&stack_b, size))
-		return (free(values), free(stack_a.elements), std_error(), 5);
+		return (free(values), free(stack_a.elements), std_error(), 6);
 	fill_stack(&stack_a, values, size);
 	select_algo(size, &stack_a, &stack_b);
 	free_all(values, &stack_a, &stack_b);
