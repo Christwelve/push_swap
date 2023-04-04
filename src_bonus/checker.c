@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:52 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/04 17:07:13 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:28:43 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 	if (is_dup(values, size))
 		return (free(values), std_error(), 3);
 	if (is_sorted(values, size))
-		return (free(values), 4);
+		return (ft_printf("%s\n", "OK"), free(values), 4);
 	if (create_stack(&c_stack_a, size))
 		return (free(values), std_error(), 5);
 	if (create_stack(&c_stack_b, size))
