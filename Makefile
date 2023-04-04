@@ -8,7 +8,7 @@ INCLUDE 	= 	-I include
 
 MAN_FILES	=	src_man/main.c src_man/circle.c src_man/utils_parse.c src_man/utils_algorithm.c src_man/algorithms.c\
 				src_man/operations/push.c src_man/operations/swap.c src_man/operations/rotate.c src_man/operations/reverse_rotate.c
-BONUS_FILES	=	src_bonus/checker.c src_bonus/circle.c src_bonus/utils_parse.c src_bonus/utils_algorithm.c src_bonus/algorithms.c\
+BONUS_FILES	=	src_bonus/checker.c src_bonus/circle.c src_bonus/utils_parse.c src_bonus/utils_algorithm.c src_bonus/utils_checker.c\
 				src_bonus/operations/push.c src_bonus/operations/swap.c src_bonus/operations/rotate.c src_bonus/operations/reverse_rotate.c				
 
 MAN_OBJ		=	$(MAN_FILES:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/04 15:58:58 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 16:39:29 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ typedef struct s_circle
 void			radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size);
 void			five_sort(t_circle *stack_a, t_circle *stack_b);
 void			simple_sort(t_circle *stack_a);
+
+/*
+ 	┌─────────────────────────────────────────────────────────────────────────┐
+ 	│ Checker	                                                              │
+ 	└─────────────────────────────────────────────────────────────────────────┘
+ */
+
+void			do_op(char *in, t_circle *c_stack_a, t_circle *c_stack_b);
+void			set_instructions(t_circle *c_stack_a, t_circle *c_stack_b);
+int				is_stack_ok(t_circle *stack_a, size_t size);
+
 
 /*
 	┌─────────────────────────────────────────────────────────────────────────┐

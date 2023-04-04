@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_algorithm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 21:15:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/31 16:05:29 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/04/04 16:27:56 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,6 @@ int	get_pos(int *values, size_t i, size_t size)
 		j++;
 	}
 	return (pos);
-}
-
-int	same_digits(size_t size, t_circle *stack_a, int pos)
-{
-	size_t	i;
-	int		digit;
-	int		tmp;
-
-	i = 0;
-	tmp = stack_a->elements[stack_a->start + i % stack_a->size] & (1 << pos);
-	i++;
-	while (i < size)
-	{
-		digit = stack_a->elements[stack_a->start + i % stack_a->size]
-			& (1 << pos);
-		if (tmp != digit)
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	fill_stack(t_circle *stack, int *values, size_t size)
