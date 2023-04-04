@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:31:01 by christianme       #+#    #+#             */
-/*   Updated: 2023/04/04 16:52:57 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 17:07:57 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	set_instructions(t_circle *c_stack_a, t_circle *c_stack_b)
 			break ;
 		do_op(in, c_stack_a, c_stack_b);
 	}
-    free(in);
+	free(in);
 }
 
 int	is_stack_ok(t_circle *stack_a, size_t size)

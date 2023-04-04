@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:52 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/04 16:53:10 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 17:07:13 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	if (check_input(argv))
 		return (std_error(), 1);
 	if (parse(argv, &values, &size))
-		return (free(values), std_error(), 2);	
+		return (free(values), std_error(), 2);
 	if (is_dup(values, size))
 		return (free(values), std_error(), 3);
 	if (is_sorted(values, size))
@@ -91,10 +91,10 @@ int	main(int argc, char **argv)
 	if (create_stack(&c_stack_a, size))
 		return (free(values), std_error(), 5);
 	if (create_stack(&c_stack_b, size))
-		return (free(values), free(c_stack_a.elements), std_error(), 6);	
+		return (free(values), free(c_stack_a.elements), std_error(), 6);
 	fill_stack(&c_stack_a, values, size);
 	set_instructions(&c_stack_a, &c_stack_b);
 	is_stack_ok(&c_stack_a, size);
-	free_all(values, &c_stack_a, &c_stack_b);		
+	free_all(values, &c_stack_a, &c_stack_b);
 	return (0);
 }

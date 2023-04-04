@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/04 16:39:29 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 17:06:54 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libs/libs.h"
-# include <limits.h> 
+# include <limits.h>
 
 typedef struct s_circle
 {
@@ -44,7 +44,6 @@ void			simple_sort(t_circle *stack_a);
 void			do_op(char *in, t_circle *c_stack_a, t_circle *c_stack_b);
 void			set_instructions(t_circle *c_stack_a, t_circle *c_stack_b);
 int				is_stack_ok(t_circle *stack_a, size_t size);
-
 
 /*
 	┌─────────────────────────────────────────────────────────────────────────┐
