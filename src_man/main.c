@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/04 16:00:14 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 16:04:41 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_input(char **argv)
 		{
 			n = ft_atol(*split);
 			if (is_num(*split) || int_max(n))
-				return (ft_free2((void **) cpy), 1);	
+				return (ft_free2((void **) cpy), 1);
 			split++;
 		}
 		ft_free2((void **) cpy);
@@ -50,7 +50,7 @@ int	parse(char **argv, int **values, size_t *size)
 		split = ft_split(*argv, ' ');
 		if (split == NULL || *split == NULL)
 			return (free(split), 1);
-		cpy = split;	
+		cpy = split;
 		while (*split != NULL)
 		{
 			if (dynamic_arr(values, ft_atol(*split)))
@@ -78,7 +78,7 @@ static void	free_all(int *values, t_circle *stack_a, t_circle *stack_b)
 {
 	free(values);
 	free(stack_a->elements);
-	free(stack_b->elements);	
+	free(stack_b->elements);
 }
 
 int	main(int argc, char **argv)
