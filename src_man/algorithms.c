@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:53:06 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/03 14:42:47 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 15:54:35 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@ void	radix_sort(t_circle *stack_a, t_circle *stack_b, size_t size)
 	while ((1 << pos) <= (int) stack_a->size)
 	{
 		i = 0;
-		if (!same_digits(size, stack_a, pos))
+		while (i < size)
 		{
-			while (i < size)
-			{
-				digit = stack_a->elements[stack_a->start] & (1 << pos);
-				if (digit == 0)
-					pb(stack_a, stack_b);
-				else
-					ra(stack_a);
-				i++;
-			}
+			digit = stack_a->elements[stack_a->start] & (1 << pos);
+			if (digit == 0)
+				pb(stack_a, stack_b);
+			else
+				ra(stack_a);
+			i++;
 		}
 		while (stack_b->size)
 			pa(stack_a, stack_b);

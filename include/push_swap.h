@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:45:01 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/01 17:28:31 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 15:58:58 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int				dynamic_arr(int **res, int n);
 
 int				is_sorted(int *stack, size_t size);
 int				get_pos(int *values, size_t i, size_t size);
-int				same_digits(size_t size, t_circle *stack_a, int pos);
 void			fill_stack(t_circle *stack, int *values, size_t size);
 
 int				create_stack(t_circle *stack, size_t size);

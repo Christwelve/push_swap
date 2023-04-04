@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:10:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/04/03 14:41:07 by christianme      ###   ########.fr       */
+/*   Updated: 2023/04/04 16:00:14 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,23 @@ int	parse(char **argv, int **values, size_t *size)
 	return (0);
 }
 
+static void	select_algo(size_t size, t_circle *stack_a, t_circle *stack_b)
+{
+	if (size <= 3)
+		simple_sort(stack_a);
+	else if (size == 5)
+		five_sort(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b, size);
+}
+
+static void	free_all(int *values, t_circle *stack_a, t_circle *stack_b)
+{
+	free(values);
+	free(stack_a->elements);
+	free(stack_b->elements);	
+}
+
 int	main(int argc, char **argv)
 {
 	t_circle	stack_a;
@@ -76,7 +93,7 @@ int	main(int argc, char **argv)
 	if (check_input(argv))
 		return (std_error(), 1);
 	if (parse(argv, &values, &size))
-		return (std_error(), free(values), 1);
+		return (free(values), std_error(), 2);
 	if (is_dup(values, size))
 		return (free(values), std_error(), 3);
 	if (is_sorted(values, size))
@@ -86,15 +103,7 @@ int	main(int argc, char **argv)
 	if (create_stack(&stack_b, size))
 		return (free(values), free(stack_a.elements), std_error(), 5);
 	fill_stack(&stack_a, values, size);
-	if (size <= 3)
-		simple_sort(&stack_a);
-	else if (size == 5)
-		five_sort(&stack_a, &stack_b);
-	else
-		radix_sort(&stack_a, &stack_b, size);
-	
-	free(values);
-	free(stack_a.elements);
-	free(stack_b.elements);	
+	select_algo(size, &stack_a, &stack_b);
+	free_all(values, &stack_a, &stack_b);
 	return (0);
 }
